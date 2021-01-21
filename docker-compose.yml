@@ -3,11 +3,12 @@ version: '3.7'
 services:
   website:
     image: php:7.2-apache
+    container_name: website_c
     depends_on:
       - api
     environment:
-      - USERNAME=toto
-      - PASSWORD=python
+      - USERNAME=sidoine
+      - PASSWORD=sidoine
     volumes:
       - ./website/:/var/www/html/
     ports:
@@ -16,10 +17,11 @@ services:
       - api_network
   api:
     image: kra:v1
+    container_name: api_c
     ports:
       - 5000:5000
     volumes:
-      - ./simple_api/student_age.json:/data/student_age.json
+      - /home/sidoine/Documents/Formations_Perso/Eazy_Training/Partie_1_Docker/Projet_Docker/student-list/simple_api/student_age.json:/data/student_age.json
     networks:
       - api_network
 networks:
